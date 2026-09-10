@@ -1,0 +1,44 @@
+# =========================
+# ANGULAR
+# =========================
+
+Angular-InventarioCRUD/node_modules/
+Angular-InventarioCRUD/dist/
+Angular-InventarioCRUD/.angular/
+Angular-InventarioCRUD/.cache/
+
+# Logs de npm
+Angular-InventarioCRUD/npm-debug.log*
+Angular-InventarioCRUD/yarn-debug.log*
+Angular-InventarioCRUD/yarn-error.log*
+
+# =========================
+# SPRING BOOT / JAVA
+# =========================
+
+InventarioCRUD/target/
+InventarioCRUD/.mvn/timing.properties
+
+# =========================
+# IDE
+# =========================
+
+.vscode/
+.idea/
+*.iml
+
+# =========================
+# SISTEMA OPERATIVO
+# =========================
+
+.DS_Store
+Thumbs.db
+
+# =========================
+# LOGS
+# =========================
+
+*.log
+
+# Base de datos H2 local
+InventarioCRUD/data/
