@@ -1,0 +1,181 @@
+<h1>Gestión de Pedidos</h1>
+
+<h2>Crear nuevo pedido</h2>
+
+<form (ngSubmit)="crearPedido()">
+
+  <div>
+    <label for="cliente">Cliente:</label>
+
+    <input
+      id="cliente"
+      type="text"
+      name="cliente"
+      [(ngModel)]="nuevoPedido.cliente"
+      required
+    >
+  </div>
+
+  <br>
+
+  <div>
+    <label for="productoID">ID del producto:</label>
+
+    <input
+      id="productoID"
+      type="number"
+      name="productoID"
+      [(ngModel)]="nuevoPedido.productoID"
+      required
+    >
+  </div>
+
+  <br>
+
+  <div>
+    <label for="cantidad">Cantidad:</label>
+
+    <input
+      id="cantidad"
+      type="number"
+      name="cantidad"
+      [(ngModel)]="nuevoPedido.cantidad"
+      required
+      min="1"
+    >
+  </div>
+
+  <br>
+
+  <div>
+    <label for="prioridad">Prioridad:</label>
+
+    <select
+      id="prioridad"
+      name="prioridad"
+      [(ngModel)]="nuevoPedido.prioridad"
+      required
+    >
+      <option value="BAJA">BAJA</option>
+      <option value="MEDIA">MEDIA</option>
+      <option value="ALTA">ALTA</option>
+      <option value="URGENTE">URGENTE</option>
+    </select>
+  </div>
+
+  <br>
+
+  <button type="submit">
+    Crear pedido
+  </button>
+
+</form>
+
+<hr>
+
+<h2>Pedidos registrados</h2>
+
+<p>
+  Total pedidos: {{ pedidos.length }}
+</p>
+
+@if (pedidos.length === 0) {
+
+  <p>
+    No hay pedidos registrados.
+  </p>
+
+}
+
+@for (pedido of pedidos; track pedido.id) {
+
+  <div class="pedido">
+
+    <h3>
+      Pedido #{{ pedido.id }}
+    </h3>
+
+    <p>
+      Cliente: {{ pedido.cliente }}
+    </p>
+
+    <p>
+      Producto ID: {{ pedido.productoID }}
+    </p>
+
+    <p>
+      Cantidad: {{ pedido.cantidad }}
+    </p>
+
+    <p>
+      Prioridad: {{ pedido.prioridad }}
+    </p>
+
+    <p>
+      Estado:
+      <strong>{{ pedido.estado }}</strong>
+    </p>
+
+    <div class="acciones">
+
+      @if (pedido.estado === 'PENDIENTE') {
+
+        <button
+          type="button"
+          (click)="confirmarPedido(pedido.id!)"
+        >
+          Confirmar
+        </button>
+
+        <button
+          type="button"
+          (click)="cancelarPedido(pedido.id!)"
+        >
+          Cancelar
+        </button>
+
+      }
+
+      @if (pedido.estado === 'CONFIRMADO') {
+
+        <button
+          type="button"
+          (click)="despacharPedido(pedido.id!)"
+        >
+          Despachar
+        </button>
+
+        <button
+          type="button"
+          (click)="cancelarPedido(pedido.id!)"
+        >
+          Cancelar
+        </button>
+
+      }
+
+      @if (pedido.estado === 'DESPACHADO') {
+
+        <span>
+          Pedido despachado. No hay acciones disponibles.
+        </span>
+
+      }
+
+      @if (pedido.estado === 'CANCELADO') {
+
+        <span>
+          Pedido cancelado. No hay acciones disponibles.
+        </span>
+
+      }
+
+    </div>
+
+  </div>
+
+  <hr>
+
+} @empty {
+
+}

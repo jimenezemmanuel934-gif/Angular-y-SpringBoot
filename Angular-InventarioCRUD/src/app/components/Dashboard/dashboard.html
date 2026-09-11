@@ -1,0 +1,305 @@
+<div class="dashboard">
+
+  <header class="dashboard-header">
+
+    <div>
+      <h1>📊 Resumenes</h1>
+
+      <p>
+        Resumen general del inventario y los pedidos
+      </p>
+    </div>
+
+    <button
+      type="button"
+      class="btn-actualizar"
+      (click)="cargarResumen()"
+    >
+      🔄 Actualizar
+    </button>
+
+  </header>
+
+
+  @if (cargando) {
+
+    <div class="mensaje">
+      Cargando información...
+    </div>
+
+  }
+
+
+  @if (error) {
+
+    <div class="error">
+      {{ error }}
+    </div>
+
+  }
+
+
+  @if (resumenInventario) {
+
+    <section class="seccion">
+
+      <div class="titulo-seccion">
+
+        <h2>📦 Inventario</h2>
+
+        <span>
+          Resumen de productos
+        </span>
+
+      </div>
+
+
+      <div class="tarjetas">
+
+
+        <div class="tarjeta azul">
+
+          <div class="icono">
+            📦
+          </div>
+
+          <div>
+
+            <p>Total productos</p>
+
+            <h3>
+              {{ resumenInventario.totalProductos }}
+            </h3>
+
+            <span>
+              Productos registrados
+            </span>
+
+          </div>
+
+        </div>
+
+
+        <div class="tarjeta naranja">
+
+          <div class="icono">
+            ⚠️
+          </div>
+
+          <div>
+
+            <p>Stock bajo (menor a 10)</p>
+
+            <h3>
+              {{ resumenInventario.productosStockBajo }}
+            </h3>
+
+            <span>
+              Requieren atención
+            </span>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <div class="productos-destacados">
+
+        <div class="producto-destacado">
+
+          <span class="etiqueta">
+            💰 Más costoso
+          </span>
+
+          <h3>
+            {{ resumenInventario.productoMasCostoso }}
+          </h3>
+
+        </div>
+
+
+        <div class="producto-destacado">
+
+          <span class="etiqueta">
+            🏷️ Más económico
+          </span>
+
+          <h3>
+            {{ resumenInventario.productoMasEconomico }}
+          </h3>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  }
+
+
+  @if (resumenPedidos) {
+
+    <section class="seccion">
+
+      <div class="titulo-seccion">
+
+        <h2>🛒 Pedidos</h2>
+
+        <span>
+          Estado de los pedidos
+        </span>
+
+      </div>
+
+
+      <div class="tarjetas">
+
+
+        <div class="tarjeta morado">
+
+          <div class="icono">
+            🛒
+          </div>
+
+          <div>
+
+            <p>Total pedidos</p>
+
+            <h3>
+              {{ resumenPedidos.totalPedidos }}
+            </h3>
+
+            <span>
+              Pedidos registrados
+            </span>
+
+          </div>
+
+        </div>
+
+
+        <div class="tarjeta amarillo">
+
+          <div class="icono">
+            ⏳
+          </div>
+
+          <div>
+
+            <p>Pendientes</p>
+
+            <h3>
+              {{ resumenPedidos.pendientes }}
+            </h3>
+
+            <span>
+              Esperando confirmación
+            </span>
+
+          </div>
+
+        </div>
+
+
+        <div class="tarjeta rojo">
+
+          <div class="icono">
+            🚨
+          </div>
+
+          <div>
+
+            <p>Urgentes</p>
+
+            <h3>
+              {{ resumenPedidos.urgentes }}
+            </h3>
+
+            <span>
+              Prioridad urgente
+            </span>
+
+          </div>
+
+        </div>
+
+
+        <div class="tarjeta verde">
+
+          <div class="icono">
+            ✅
+          </div>
+
+          <div>
+
+            <p>Confirmados</p>
+
+            <h3>
+              {{ resumenPedidos.confirmados }}
+            </h3>
+
+            <span>
+              Pedidos confirmados
+            </span>
+
+          </div>
+
+        </div>
+
+
+        <div class="tarjeta azul-claro">
+
+          <div class="icono">
+            🚚
+          </div>
+
+          <div>
+
+            <p>Despachados</p>
+
+            <h3>
+              {{ resumenPedidos.despachados }}
+            </h3>
+
+            <span>
+              Pedidos enviados
+            </span>
+
+          </div>
+
+        </div>
+
+
+        <div class="tarjeta gris">
+
+          <div class="icono">
+            ❌
+          </div>
+
+          <div>
+
+            <p>Cancelados</p>
+
+            <h3>
+              {{ resumenPedidos.cancelados }}
+            </h3>
+
+            <span>
+              Pedidos cancelados
+            </span>
+
+          </div>
+
+        </div>
+
+
+      </div>
+
+    </section>
+
+  }
+
+
+</div>

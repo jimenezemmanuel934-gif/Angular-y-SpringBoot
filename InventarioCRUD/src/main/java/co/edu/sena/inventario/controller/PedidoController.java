@@ -50,8 +50,7 @@ public class PedidoController {
 
 
 
-    // ACTUALIZAR PEDIDO
-@PutMapping("/{id}")
+   @PutMapping("/{id}")
 public ResponseEntity<?> actualizarPedido(
         @PathVariable Long id,
         @RequestBody Pedido pedido) {
@@ -76,6 +75,7 @@ public ResponseEntity<?> actualizarPedido(
                 .body(e.getMessage());
     }
 }
+
 
 
 

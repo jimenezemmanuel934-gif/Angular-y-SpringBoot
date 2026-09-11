@@ -141,6 +141,43 @@ export class Productos implements OnInit {
       });
   }
 
+borrarProducto(id: number): void {
+
+  console.log('Eliminando producto con ID:', id);
+
+  const confirmar = confirm(
+    '¿Está seguro de que desea eliminar este producto?'
+  );
+
+  if (!confirmar) {
+    return;
+  }
+
+  this.productoService.eliminar(id).subscribe({
+
+    next: (respuesta) => {
+
+      console.log('Respuesta del servidor:', respuesta);
+
+      this.productos = this.productos.filter(
+        producto => producto.id !== id
+      );
+
+      this.cdr.detectChanges();
+
+      alert('Producto eliminado correctamente');
+    },
+
+    error: (error) => {
+
+      console.error('ERROR eliminando producto:', error);
+
+      alert('Error al eliminar el producto');
+    }
+
+  });
+
+}
   cancelarEdicion(): void {
 
     this.limpiarFormulario();

@@ -84,7 +84,8 @@ public ResponseEntity<?> crearProducto(@RequestBody Producto producto) {
 
 
 
-  //ACTUALIZAR PRODUCTO
+
+    //ACTUALIZAR PRODUCTO
 @PutMapping("/{id}")
 public ResponseEntity<?> actualizarProducto(
         @PathVariable Long id,
@@ -116,7 +117,6 @@ public ResponseEntity<?> actualizarProducto(
 
     return ResponseEntity.ok(productoActualizado);
 }
-
 
 
     //BORRAR PRODUCTO

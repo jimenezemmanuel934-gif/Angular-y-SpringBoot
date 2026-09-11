@@ -2,6 +2,7 @@ import { Injectable, inject } from "@angular/core"
 import { HttpClient } from "@angular/common/http"
 import { Observable } from "rxjs"
 import { Producto } from "../models/producto"
+import { ResumenInventario } from "./resumen-inventario"
 
 @Injectable({
  providedIn:'root'
@@ -38,12 +39,19 @@ listar(): Observable<Producto[]> {
     );
   }
 
-  eliminar(id: number): Observable<void> {
-    return this.http.delete<void>(
-      `${this.apiUrl}/${id}`
-    );
-  }
+eliminar(id: number): Observable<string> {
+  return this.http.delete(`${this.apiUrl}/${id}`, {
+    responseType: 'text'
+  });
 }
+
+resumen(): Observable<ResumenInventario> {
+  return this.http.get<ResumenInventario>(
+    `${this.apiUrl}/resumen`
+  );
+}
+}
+
 
 
 
