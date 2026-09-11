@@ -84,27 +84,39 @@ public ResponseEntity<?> crearProducto(@RequestBody Producto producto) {
 
 
 
-    //ACTUALIZAR PRODUCTO
-    @PutMapping("/{id}")
-    public ResponseEntity<?> actualizarProducto(
-            @PathVariable Long id,
-            @RequestBody Producto nuevoProducto) {
+  //ACTUALIZAR PRODUCTO
+@PutMapping("/{id}")
+public ResponseEntity<?> actualizarProducto(
+        @PathVariable Long id,
+        @RequestBody Producto nuevoProducto) {
 
-        Producto producto = productoService.buscarPorId(id);
+    Producto producto = productoService.buscarPorId(id);
 
-        if (producto == null) {
-            return ResponseEntity
-                    .status(HttpStatus.NOT_FOUND)
-                    .body("Producto no encontrado");
-        }
-
-        producto.setNombre(nuevoProducto.getNombre());
-        producto.setPrecio(nuevoProducto.getPrecio());
-        producto.setCantidad(nuevoProducto.getCantidad());
-        producto.setCategoria(nuevoProducto.getCategoria());
-
-        return ResponseEntity.ok(producto);
+    if (producto == null) {
+        return ResponseEntity
+                .status(HttpStatus.NOT_FOUND)
+                .body("Producto no encontrado");
     }
+
+    String error = validarProducto(nuevoProducto);
+
+    if (error != null) {
+        return ResponseEntity
+                .badRequest()
+                .body(error);
+    }
+
+    producto.setNombre(nuevoProducto.getNombre());
+    producto.setPrecio(nuevoProducto.getPrecio());
+    producto.setCantidad(nuevoProducto.getCantidad());
+    producto.setCategoria(nuevoProducto.getCategoria());
+
+    Producto productoActualizado =
+            productoService.guardarProducto(producto);
+
+    return ResponseEntity.ok(productoActualizado);
+}
+
 
 
     //BORRAR PRODUCTO
