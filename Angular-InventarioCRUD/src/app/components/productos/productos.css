@@ -1,33 +1,158 @@
-.contenedor {
-  width: 90%;
-  margin: 40px auto;
-  font-family: Arial, sans-serif;
+
+/* CONTENEDOR GENERAL */
+:host {
+  display: block;
+  min-height: 100vh;
+  padding: 30px;
+  background-color: #f4f7f6;
+  box-sizing: border-box;
 }
 
+/* TÍTULO PRINCIPAL */
 h1 {
   text-align: center;
-  color: #2e7d32;
-  margin-bottom: 30px;
+  color: #198754;
+  margin-bottom: 10px;
+  font-size: 36px;
 }
 
-table {
-  width: 100%;
-  border-collapse: collapse;
+/* TÍTULOS */
+h2 {
+  color: #333;
+  margin-top: 25px;
+}
+
+/* FORMULARIO */
+form {
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 25px;
   background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-th {
-  background-color: #2e7d32;
+/* CADA CAMPO */
+form div {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+
+/* ETIQUETAS */
+label {
+  font-weight: bold;
+  margin-bottom: 6px;
+  color: #444;
+}
+
+/* CAMPOS */
+input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 7px;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+/* EFECTO AL SELECCIONAR INPUT */
+input:focus {
+  outline: none;
+  border-color: #198754;
+  box-shadow: 0 0 0 2px rgba(25, 135, 84, 0.15);
+}
+
+/* BOTONES */
+button {
+  padding: 9px 16px;
+  border: none;
+  border-radius: 7px;
+  cursor: pointer;
+  font-weight: bold;
+  margin-right: 8px;
+  transition: 0.2s;
+}
+
+/* BOTÓN CREAR / GUARDAR */
+button[type="submit"] {
+  background-color: #198754;
   color: white;
-  padding: 12px;
 }
 
-td {
-  padding: 12px;
-  border-bottom: 1px solid #ddd;
+button[type="submit"]:hover {
+  background-color: #146c43;
+}
+
+/* BOTÓN CANCELAR */
+button[type="button"] {
+  background-color: #6c757d;
+  color: white;
+}
+
+button[type="button"]:hover {
+  background-color: #5c636a;
+}
+
+/* SECCIÓN DE PRODUCTOS */
+h2 + p {
   text-align: center;
+  font-size: 18px;
+  color: #555;
 }
 
-tr:hover {
-  background-color: #f5f5f5;
+/* CADA PRODUCTO */
+@for (producto of productos) {
 }
+
+/* TARJETAS DE PRODUCTOS */
+h3 {
+  color: #198754;
+  margin-top: 0;
+}
+
+h3,
+h3 ~ p {
+  margin-left: 5px;
+}
+
+/* CONTENEDORES DE PRODUCTOS */
+h3 {
+  font-size: 22px;
+}
+
+/* BOTÓN EDITAR */
+button {
+  margin-top: 5px;
+}
+
+/* SEPARADORES */
+hr {
+  border: none;
+  border-top: 1px solid #ddd;
+  margin: 25px 0;
+}
+
+/* RESPONSIVE */
+@media (max-width: 600px) {
+
+  :host {
+    padding: 15px;
+  }
+
+  h1 {
+    font-size: 28px;
+  }
+
+  form {
+    padding: 18px;
+  }
+
+  input {
+    width: 100%;
+  }
+
+  button {
+    margin-bottom: 8px;
+  }
+}
+
